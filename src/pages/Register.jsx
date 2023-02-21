@@ -44,14 +44,14 @@ const Register = () => {
               photoURL: downloadURL,
             });
             await setDoc(doc(db, "userChats", res.user.uid), {})
-            navigate("/")
+            navigate("/login")
           });
 
         }
       );
     } catch (err) {
       setErr(true);
-      console.log(err.message);
+      console.log(err);
     }
   };
 
