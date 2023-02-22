@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { collection, query, where, getDoc, setDoc, getDocs, updateDoc, serverTimestamp, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
 const Search = () => {
   const [userName, setUserName] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+  const { dispatch } = useContext(ChatContext)
 
   const { currentUser } = useContext(AuthContext);
 
@@ -69,6 +71,7 @@ const Search = () => {
 
     setUser(null)
     setUserName("")
+    dispatch({type: "CHANGE_USER", payload: user})
   };
 
   return (
